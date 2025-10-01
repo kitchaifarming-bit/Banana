@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กิจชัย ฟาร์มกล้วยหอม - กล้วยคุณภาพ สินค้าแปรรูป</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(76, 175, 80, 0.8), rgba(129, 199, 132, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f0f4c3" width="1200" height="600"/><path fill="%234CAF50" opacity="0.3" d="M0,300 Q300,200 600,300 T1200,300 L1200,600 L0,600 Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #FFC107;
+            color: #333;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 193, 7, 0.6);
+        }
+        
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #4CAF50;
+        }
+        
+        .varieties {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .variety-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .variety-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .variety-card h3 {
+            color: #4CAF50;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .variety-icon {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .products {
+            background: #f5f5f5;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #FFE082 0%, #FFC107 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-info h3 {
+            color: #4CAF50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .price {
+            font-size: 1.5rem;
+            color: #FF6B6B;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        
+        .buy-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .buy-btn:hover {
+            background: #45a049;
+        }
+        
+        .contact {
+            background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            color: white;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .cart {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #FFC107;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+        
+        .cart:hover {
+            transform: scale(1.1);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #FF6B6B;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🍌 กิจชัย ฟาร์มกล้วยหอม</div>
+            <ul class="nav-links">
+                <li><a href="#home">หน้าแรก</a></li>
+                <li><a href="#varieties">สายพันธุ์</a></li>
+                <li><a href="#products">สินค้า</a></li>
+                <li><a href="#contact">ติดต่อ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>กล้วยหอมที่จริงใจ กิจชัยฟาร์ม</h1>
+            <p>ปลูกด้วยใจ เก็บเกี่ยวด้วยมาตรฐาน</p>
+            <a href="#products" class="btn">สั่งซื้อเลย</a>
+        </div>
+    </section>
+
+    <section id="varieties" class="section">
+        <h2>สายพันธุ์กล้วยของเรา</h2>
+        <div class="varieties">
+            <div class="variety-card">
+                <div class="variety-icon">🍌</div>
+                <h3>กล้วยหอมทอง</h3>
+                <p>กล้วยหอมทองพันธุ์ไทยแท้ รสชาติหวานหอม เนื้อนุ่ม เหมาะสำหรับรับประทานสด มีคุณค่าทางโภชนาการสูง อุดมไปด้วยวิตามินและแร่ธาตุ</p>
+                <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                    <li>หวานหอมธรรมชาติ</li>
+                    <li>เนื้อแน่น สีเหลืองทอง</li>
+                    <li>ปลูกแบบออร์แกนิก</li>
+                </ul>
+            </div>
+            
+            <div class="variety-card">
+                <div class="variety-icon">🍌</div>
+                <h3>กล้วยหอมคาเวนดิช</h3>
+                <p>กล้วยหอมคาเวนดิชมาตรฐานส่งออก ขนาดใหญ่ เนื้อแน่น รสชาติหวานกำลังดี เก็บได้นาน เหมาะสำหรับทั้งรับประทานสดและแปรรูป</p>
+                <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                    <li>ขนาดใหญ่สม่ำเสมอ</li>
+                    <li>เก็บได้นาน 7-10 วัน</li>
+                    <li>มาตรฐานส่งออก</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="section products">
+        <h2>สินค้าของเรา</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">🍌</div>
+                <div class="product-info">
+                    <h3>กล้วยหอมทองสด</h3>
+                    <p>กล้วยหอมทองสดใหม่ เก็บเกี่ยวทุกเช้า</p>
+                    <div class="price">฿40/หวี</div>
+                    <button class="buy-btn" onclick="addToCart('กล้วยหอมทองสด')">🛒 สั่งซื้อ</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">🍌</div>
+                <div class="product-info">
+                    <h3>กล้วยคาเวนดิชสด</h3>
+                    <p>กล้วยคาเวนดิชขนาดใหญ่ คุณภาพพรีเมียม</p>
+                    <div class="price">฿50/หวี</div>
+                    <button class="buy-btn" onclick="addToCart('กล้วยคาเวนดิชสด')">🛒 สั่งซื้อ</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">🍪</div>
+                <div class="product-info">
+                    <h3>กล้วยอบกรอบ</h3>
+                    <p>กล้วยอบแห้งกรอบ ไม่ใช้น้ำมัน สุขภาพดี</p>
+                    <div class="price">฿180/ถุง</div>
+                    <button class="buy-btn" onclick="addToCart('กล้วยอบกรอบ')">🛒 สั่งซื้อ</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">🍩</div>
+                <div class="product-info">
+                    <h3>กล้วยทอด</h3>
+                    <p>กล้วยทอดกรอบอร่อย พร้อมรับประทาน</p>
+                    <div class="price">฿150/กล่อง</div>
+                    <button class="buy-btn" onclick="addToCart('กล้วยทอด')">🛒 สั่งซื้อ</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">🥤</div>
+                <div class="product-info">
+                    <h3>น้ำกล้วยหอม</h3>
+                    <p>น้ำกล้วยหอมธรรมชาติ 100% ไม่ใส่น้ำตาล</p>
+                    <div class="price">฿80/ขวด</div>
+                    <button class="buy-btn" onclick="addToCart('น้ำกล้วยหอม')">🛒 สั่งซื้อ</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">🍰</div>
+                <div class="product-info">
+                    <h3>ขนมกล้วย</h3>
+                    <p>ขนมกล้วยหอมทองแท้ สูตรโบราณ</p>
+                    <div class="price">฿120/กล่อง</div>
+                    <button class="buy-btn" onclick="addToCart('ขนมกล้วย')">🛒 สั่งซื้อ</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact">
+        <h2>ติดต่อเรา</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem;">พร้อมให้บริการและตอบคำถามทุกข้อสงสัย</p>
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="contact-icon">📱</div>
+                <div>
+                    <strong>โทรศัพท์</strong>
+                    <p>065-193-5996</p>
+                    <p>062-429-4249</p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">💬</div>
+                <div>
+                    <strong>Line</strong>
+                    <p>@bananafarm</p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">📧</div>
+                <div>
+                    <strong>Email</strong>
+                    <p>info@bananafarm.com</p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <div>
+                    <strong>ที่ตั้ง</strong>
+                    <p>อ.โขงเจียม จ.อุบลราชธานี</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 กิจชัย ฟาร์มกล้วยหอม - กล้วยคุณภาพ ส่งตรงจากสวน</p>
+    </footer>
+
+    <div class="cart" onclick="viewCart()">
+        🛒
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+
+    <script>
+        let cartItems = [];
+        
+        function addToCart(productName) {
+            cartItems.push(productName);
+            document.getElementById('cartCount').textContent = cartItems.length;
+            alert('เพิ่ม ' + productName + ' ลงตะกร้าเรียบร้อยแล้ว!');
+        }
+        
+        function viewCart() {
+            if (cartItems.length === 0) {
+                alert('ตะกร้าสินค้าว่างเปล่า');
+            } else {
+                alert('สินค้าในตะกร้า:\n' + cartItems.join('\n') + '\n\nกรุณาติดต่อเราเพื่อยืนยันคำสั่งซื้อ');
+            }
+        }
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
